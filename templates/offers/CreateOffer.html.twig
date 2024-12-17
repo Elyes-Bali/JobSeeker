@@ -1,0 +1,58 @@
+
+      {% extends 'base.html.twig' %}
+      {% block body %}
+        <main class="flex-shrink-0">
+            <!-- Create Offer Section-->
+            <section class="py-5">
+                <div class="container px-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm border-0">
+                                <div class="container mt-5">
+                                    <h1 class="mb-4 text-center">Create a New Job Offer</h1>
+                                    <div class="card shadow-sm p-4">
+                                        {{ form_start(form) }}
+                                            <div class="row">
+                                                {% for field in form %}
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="{{ field.vars.id }}" class="form-label">{{ field.vars.label }}</label>
+                                                        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                                        <div class="form-text text-danger">{{ form_errors(field) }}</div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items gap-2 mt-4">
+                                                <button type="submit" class="w-100 btn btn-primary">Submit</button>
+                                                <a href="{{ path('offers_list') }}" class="w-100 btn btn-secondary">Cancel</a>
+                                            </div>
+                                        {{ form_end(form) }}
+                                        <datalist id="languages">
+                                            <option value="English"></option>
+                                            <option value="French"></option>
+                                            <option value="Spanish"></option>
+                                            <option value="German"></option>
+                                            <option value="Italian"></option>
+                                            <option value="Chinese"></option>
+                                            <option value="Japanese"></option>
+                                        </datalist>
+                                        <datalist id="contractTypes">
+                                            <option value="Full-Time"></option>
+                                            <option value="Part-Time"></option>
+                                            <option value="Temporary"></option>
+                                            <option value="Internship"></option>
+                                            <option value="Freelance"></option>
+                                            <option value="Remote"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+   
+    </body>
+
+{% endblock %}

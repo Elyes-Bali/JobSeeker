@@ -1,0 +1,30 @@
+div.charts-container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+div.charts-container > canvas#pie-chart{
+    display: flex;
+    width: clamp(350px,450px,550px);
+    aspect-ratio:1;
+}
+div.charts-container > canvas#city-chart{
+    display: flex;
+    width: clamp(350px,450px,550px);
+    aspect-ratio:1;
+}
+div.charts-container > canvas#monthly-chart{
+    display: flex;
+    width: clamp(350px,450px,550px);
+    aspect-ratio:1;
+}
+div.charts-container > canvas#contract-chart{
+    display: flex;
+    width: clamp(350px,450px,550px);
+    aspect-ratio:1;
+}

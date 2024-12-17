@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="flex-shrink-0 vh-100">
+        <!-- Offer Details Section -->
+        <section class="py-5 bg-light">
+            <div class="container px-5">
+                <div class="card shadow-lg border-0 rounded">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2 class="m-0">Offer Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover mb-4">
+                                <tbody>
+                                    <tr>
+                                        <th class="bg-light">Id</th>
+                                        <td>{{ offer.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Speciality</th>
+                                        <td>{{ offer.specialite }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Description</th>
+                                        <td>{{ offer.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">City</th>
+                                        <td>{{ offer.villeTravail }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Salary</th>
+                                        <td>{{ offer.salaire }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Applied Users</th>
+                                        <td>{{ offer.userIds|length }} user(s)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <!-- Back to List -->
+                            <a href="{{ path('offers_list') }}" class="btn btn-secondary px-4">
+                                <i class="bi bi-arrow-left-circle"></i> Back to List
+                            </a>
+
+                            <!-- Apply Button -->
+                            {% if app.user and app.user.getId() in offer.userIds %}
+                                <button class="btn btn-success px-4" disabled>
+                                    <i class="bi bi-check-circle"></i> Already Applied
+                                </button>
+                            {% elseif app.user %}
+                                <a href="{{ path('offers_apply', { id: offer.id }) }}" class="btn btn-success px-4">
+                                    <i class="bi bi-check-circle"></i> Apply
+                                </a>
+                            {% else %}
+                                <a href="{{ path('app_login') }}" class="btn btn-outline-primary px-4">
+                                    <i class="bi bi-person-circle"></i> Login to Apply
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        <small>Offer Details - {{ 'now'|date('F j, Y') }}</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% for type, messages in app.flashes %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{% endblock %}

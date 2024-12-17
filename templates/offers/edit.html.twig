@@ -1,0 +1,102 @@
+
+      {% extends 'base.html.twig' %}
+      {% block body %}
+        <style>
+            .form-container {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 30px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+                margin: auto;
+            }
+            .form-container h1 {
+                margin-bottom: 20px;
+                color: #343a40;
+            }
+            .form-control p-2 {
+                
+                margin-bottom: 15px;
+                padding: 100px 15px;
+                font-size: 16px;
+            }
+            .btn {
+                width: 150px;
+            }
+            .btn-secondary {
+                margin-left: 10px;
+            }
+        </style>
+        <main class="flex-shrink-0">
+            <!-- Edit Offer Form Section -->
+            <section class="py-5 bg-light">
+                <div class="form-container">
+                    <h1>Edit Offer</h1>
+                    {{ form_start(form) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.anneesExperience, 'Years of Experience') }}
+                        {{ form_widget(form.anneesExperience, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter years of experience'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.connaissances, 'Knowledge') }}
+                        {{ form_widget(form.connaissances, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter knowledge'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.contrat, 'Contract Type') }}
+                        {{ form_widget(form.contrat, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter contract type'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.formation, 'Education') }}
+                        {{ form_widget(form.formation, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter education details'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.langue, 'Language') }}
+                        {{ form_widget(form.langue, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter language(s)'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.nbrRecruter, 'Number of Recruits') }}
+                        {{ form_widget(form.nbrRecruter, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter number to recruit'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.salaire, 'Salary') }}
+                        {{ form_widget(form.salaire, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter salary'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.specialite, 'Specialty') }}
+                        {{ form_widget(form.specialite, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter specialty'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.description, 'Job Description') }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter job description'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.villeTravail, 'Work City') }}
+                        {{ form_widget(form.villeTravail, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter work city'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.experienceRequise, 'Required Experience') }}
+                        {{ form_widget(form.experienceRequise, {'attr': {'class': 'form-control p-2', 'placeholder': 'Enter required experience'}}) }}
+                    </div>
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                        <button class="btn btn-primary w-100">Save Changes</button>
+                        <a href="{{ path('app_offers') }}" class="btn btn-secondary w-100">Cancel</a>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                <canvas id="pie-chart"></canvas>
+                <canvas id="bar-chart"></canvas>
+            </section>
+        </main>
+      
+{% endblock %}

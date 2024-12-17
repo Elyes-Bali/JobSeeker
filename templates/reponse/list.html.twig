@@ -1,0 +1,38 @@
+{# templates/reponse/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des réponses{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des Réponses</h1>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID Réclamation</th>
+                <th>Titre de la réclamation</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Réponse de l'administrateur</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reponse in reponses %}
+                <tr>
+                    <td>{{ reponse.reclamation.id }}</td>
+                    <td>{{ reponse.reclamation.titre }}</td>
+                    <td>{{ reponse.reclamation.description }}</td>
+                    <td>{{ reponse.reclamation.statut }}</td>
+                    <td>{{ reponse.texte }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucune réponse disponible.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 h-100">
+        <h1 class="mb-4 text-center">Liste des utilisateurs</h1>
+
+        <!-- Formulaire de filtre -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Filtrer et Rechercher</h5>
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_row(form.role, { 'attr': { 'class': 'form-select' } }) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.search, { 'attr': { 'class': 'form-control' } }) }}
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        {{ form_row(form.submit, { 'attr': { 'class': 'btn btn-primary w-100' } }) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+
+
+        <!-- Tableau des utilisateurs -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Rôle(s)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.telephone }}</td>
+                        <td>
+                            {% for role in user.roles %}
+                                <span class="badge bg-info text-dark">{{ role }}</span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Aucun utilisateur trouvé.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bouton d'ajout d'administrateur -->
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <div class="d-grid gap-2 mt-3">
+                <a href="{{ path('add_admin') }}" class="btn btn-primary btn-lg">Ajouter un Administrateur</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

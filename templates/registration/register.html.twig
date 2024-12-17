@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Etudiant{% endblock %}
+
+{% block body %}
+
+    <section style="z-index: 30;backdrop-filter: blur(10px);" id="container" class="w-100 h-100 position-fixed top-0 d-flex flex-column justify-content-center align-items-center">
+        <div class="w-100 position-absolute container mt-5">
+
+            <!-- Modal -->
+            <div class="w-100 modal fade show" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" style="display: block;" aria-hidden="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModalLabel">Your Informations</h5>
+                            <a href="{{ path('app_home_page') }}" class="btn-close" aria-label="Close"></a>
+                        </div>
+                        <div class="modal-body">
+                            {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                            {{ form_errors(registrationForm) }}
+
+                            <div class="mb-3">
+                                <label class="form-label">LastName</label>
+                                {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Enter Your LastName'}}) }}
+                                <td colspan="2"> {{ form_errors(registrationForm.nom) }}</td>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">FirstName</label>
+                                {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Enter Your FirstName'}}) }}
+                                <td colspan="2"> {{ form_errors(registrationForm.prenom) }}</td>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Enter Your Phone Number'}}) }}
+                                <td colspan="2"> {{ form_errors(registrationForm.telephone) }}</td>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">E-mail</label>
+                                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Enter Your E-mail'}}) }}
+                                {{ form_errors(registrationForm.email) }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'autocomplete': 'new-password', 'class': 'form-control form-control-lg', 'placeholder': 'Enter Your Password'}}) }}
+                                {{ form_errors(registrationForm.plainPassword) }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form_widget(registrationForm.agreeTerms) }}
+                                {{ form_label(registrationForm.agreeTerms) }}
+                                {{ form_errors(registrationForm.agreeTerms) }}
+                            </div>
+
+{#                            <div class="d-flex justify-content-center">#}
+{#                                {{ form_widget(registrationForm.Submit, {'label': 'S\'inscrire', 'attr': {'class': 'btn btn-lg btn-primary'}}) }}#}
+{#                            </div>#}
+
+                            <button type="submit" class="btn btn-primary w-100">Send</button>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional JavaScript to handle modal behavior -->
+    <script>
+        // Ensure the modal stays open by default
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalElement = document.getElementById('formModal');
+            if (modalElement) {
+                modalElement.classList.add('show');
+                modalElement.setAttribute('style', 'display: block;');
+            }
+        });
+    </script>
+
+
+{% endblock %}

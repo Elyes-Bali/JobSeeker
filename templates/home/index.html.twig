@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <!-- Start Hero Section -->
+
+    <header class="py-5" style="backdrop-filter: blur(10px); z-index: 10; background-color: #021526">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center justify-content-center">
+                <div class="col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="my-5 text-center text-xl-start">
+                        <h1 class="display-5 fw-bolder text-white mb-2">Your gateway to professional opportunities</h1>
+                        <p class="lead fw-normal text-white-50 mb-4">Explore job offers, apply easily, and boost your career with our platform dedicated to job seekers.</p>
+                        {% if app.user is null %}
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{ path('app_login') }}">LOGIN</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="{{ path('app_register') }}">REGISTER</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                   
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Hero Section -->
+
+    <!-- Start Why Choose Us Section -->
+
+    <section class="py-5" id="about-us">
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2 class="fw-bolder mb-0">Why choose our platform to find a job?</h2>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row gx-5 row-cols-1 row-cols-md-2">
+                        <div class="col mb-5 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-briefcase"></i></div>
+                            <h2 class="h5">Varied job offers</h2>
+                            <p class="mb-0">Access a wide range of professional opportunities tailored to your skills and aspirations.</p>
+                        </div>
+                        <div class="col mb-5 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-person-check"></i></div>
+                            <h2 class="h5">Simplified applications</h2>
+                            <p class="mb-0">Apply in just a few clicks with a user-friendly interface and a quick application process.</p>
+                        </div>
+                        <div class="col mb-5 mb-md-0 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-graph-up"></i></div>
+                            <h2 class="h5">Career opportunities</h2>
+                            <p class="mb-0">Accelerate your professional journey with job offers that align with your career goals.</p>
+                        </div>
+                        <div class="col h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-heart"></i></div>
+                            <h2 class="h5">Security and confidentiality</h2>
+                            <p class="mb-0">Apply with confidence knowing that your data is protected and treated confidentially.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Why Choose Us Section -->
+
+    <!-- Start Contact Section -->
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row">
+                <!-- Address -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
+                    <h5>Address</h5>
+                    <p>123 Main Street, Tunis, Tunisia</p>
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-phone-alt fa-3x mb-3 text-primary"></i>
+                    <h5>Phone</h5>
+                    <p><a href="tel:+21699742820" class="text-decoration-none">+216 12 345 678</a></p>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
+                    <h5>Email</h5>
+                    <p><a href="mailto:contact@jobplatform.com" class="text-decoration-none">contact@jobplatform.com</a></p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <!-- Social Media -->
+                <div class="col-12 text-center">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons mt-3">
+                        <a href="https://facebook.com" target="_blank" class="text-primary mx-2">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="text-info mx-2">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="text-danger mx-2">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="text-primary mx-2">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Contact Section -->
+
+    <!-- Testimonial Section -->
+
+    <div class="py-5" style="background-color: #C7C8CC">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 col-xl-7">
+                    <div class="text-center">
+                        <div class="fs-4 mb-4 fst-italic">
+                            "Thanks to this platform, I found the ideal job in just a few days. Searching and applying for offers is fast and simple."
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            
+                            <div class="fw-bold">
+                                John Doe
+                                <span class="fw-bold text-primary mx-1">/</span>
+                                Job Seeker
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

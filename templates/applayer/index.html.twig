@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Job Offers{% endblock %}
+
+{% block body %}
+<div class="container vh-100">
+    <h1 class="page-title">All Job Offers</h1>
+
+    <table class="offers-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Speciality</th>
+                <th>City</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for offer in offers %}
+            <tr>
+                <td>{{ offer.id }}</td>
+                <td>{{ offer.specialite }}</td>
+                <td>{{ offer.villeTravail }}</td>
+                <td>
+                    <a class="details-link" href="{{ path('app_offer_detail', { id: offer.id }) }}">View Details</a>
+                       <a href="{{ path('offers_edit', { id: offer.id }) }}" class="details-link">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+     
+
+     
+
+        .offers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .offers-table th, .offers-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .offers-table th {
+            background-color:rgb(25, 79, 161);
+            color: white;
+        }
+
+        .offers-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .offers-table tr:hover {
+            background-color: #ddd;
+        }
+
+        .details-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color:rgb(25, 79, 161);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .details-link:hover {
+            background-color: rgb(25, 79, 161);
+        }
+    </style>
+{% endblock %}

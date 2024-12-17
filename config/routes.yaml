@@ -1,0 +1,17 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+admin_dashboard:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::Dashboard
+
+app_home_page:
+    path: /
+    controller: App\Controller\HomeController::index
+
+# config/routes.yaml
+admin:
+    resource: ../src/Controller/Admin/
+    type: annotation

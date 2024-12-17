@@ -1,0 +1,26 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block title %}Nouvelle Réponse{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Répondre à la Réclamation : "{{ reclamation.titre }}"</h1>
+
+        {{ form_start(form) }}
+
+        <div class="form-group mb-4">
+            {{ form_label(form.texte, 'Message de Réponse') }}
+            {{ form_widget(form.texte, { 'attr': { 'class': 'form-control', 'rows': 6 } }) }}
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ path('admin') }}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Retour
+            </a>
+{#            <button type="submit" class="btn btn-success">#}
+{#                <i class="fa fa-send"></i> Envoyer la Réponse#}
+{#            </button>#}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

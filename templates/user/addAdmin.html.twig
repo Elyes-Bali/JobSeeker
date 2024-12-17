@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Etudiant{% endblock %}
+
+{% block body %}
+
+<section style="z-index: 30;backdrop-filter: blur(10px);" id="container" class="w-100 h-100 position-fixed top-0 d-flex flex-column justify-content-center align-items-center">
+    <div class="w-100 position-absolute container mt-5">
+        <!-- Modal -->
+        <div class="w-100 modal fade show" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" style="display: block;" aria-hidden="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModalLabel">Déposer les données</h5>
+                        <a href="{{ path('app_user_list') }}" class="btn-close" aria-label="Close"></a>
+                    </div>
+
+                    <div class="modal-body">
+                        {{ form_start(adminForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                        {{ form_errors(adminForm) }}
+
+                        <div class="mb-3">
+                            <label class="form-label">Nom</label>
+                            {{ form_widget(adminForm.nom, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Saisir votre nom'}}) }}
+                            <td colspan="2"> {{ form_errors(adminForm.nom) }}</td>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Prenom</label>
+                            {{ form_widget(adminForm.prenom, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Saisir votre nom'}}) }}
+                            <td colspan="2"> {{ form_errors(adminForm.prenom) }}</td>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Numero telephone</label>
+                            {{ form_widget(adminForm.telephone, {'attr': {'class': 'form-control form-control-lg', 'type':'text', 'placeholder': 'Saisir votre Numero telephone'}}) }}
+                            <td colspan="2"> {{ form_errors(adminForm.telephone) }}</td>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Adesse Mail</label>
+                            {{ form_widget(adminForm.email, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Saisir votre adresse email'}}) }}
+                            {{ form_errors(adminForm.email) }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="plainPassword" class="form-label">Mot de passe</label>
+                            {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Entrez un mot de passe'}}) }}
+                            {{ form_errors(form.plainPassword) }}
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            {{ form_widget(adminForm.agreeTerms) }}
+                            {{ form_label(adminForm.agreeTerms) }}
+                            {{ form_errors(adminForm.agreeTerms) }}
+                        </div>
+                        <div class="mb-3   ">
+                            {{ form_widget(adminForm.save) }}
+                            {{ form_label(adminForm.save) }}
+                        </div>
+
+
+{#                        <button type="submit" class="btn btn-primary w-100">Envoyer</button>#}
+
+                        {#        {{ form_start(form) }}#}
+{#        {{ form_row(form.email) }}#}
+{#        {{ form_row(form.password) }}#}
+{#        {{ form_row(form.nom) }}#}
+{#        {{ form_row(form.prenom) }}#}
+{#        {{ form_row(form.save) }}#}
+{#        {{ form_end(form) }}#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+
+
+
+
+
+
+
+
+
+
+                            {#                            <div class="d-flex justify-content-center">#}
+                            {#                                {{ form_widget(registrationForm.Submit, {'label': 'S\'inscrire', 'attr': {'class': 'btn btn-lg btn-primary'}}) }}#}
+                            {#                            </div>#}
+
+                            {{ form_end(adminForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional JavaScript to handle modal behavior -->
+    <script>
+        // Ensure the modal stays open by default
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalElement = document.getElementById('formModal');
+            if (modalElement) {
+                modalElement.classList.add('show');
+                modalElement.setAttribute('style', 'display: block;');
+            }
+        });
+    </script>
+
+
+{% endblock %}

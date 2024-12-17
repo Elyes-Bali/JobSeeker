@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Réclamations{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 h-100">
+        <h1 class="mb-4 text-center">Liste des Réclamations</h1>
+
+        <!-- Formulaire de filtre -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Filtrer les réclamations</h5>
+                {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+                <div class="col-md-6">
+                    {{ form_row(form.priorite, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.categorie, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <!-- Tableau des réclamations -->
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Priorité</th>
+                <th>Catégorie</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reclamation in reclamations %}
+                <tr>
+                    <td>{{ reclamation.id }}</td>
+                    <td>{{ reclamation.titre }}</td>
+                    <td>{{ reclamation.description }}</td>
+                    <td>{{ reclamation.date ? reclamation.date|date('d/m/Y') : 'N/A' }}</td>
+                    <td>
+                            <span class="badge {% if reclamation.priorite == 'Urgent' %}bg-danger{% elseif reclamation.priorite == 'Moyen' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                                {{ reclamation.priorite }}
+                            </span>
+                    </td>
+                    <td>
+                        <span class="badge bg-info text-dark">{{ reclamation.categorie }}</span>
+                    </td>
+                    <td>
+                        <span class="badge {% if reclamation.statut == 'Ouvert' %}bg-warning{% elseif reclamation.statut == 'En cours' %}bg-info{% elseif reclamation.statut == 'Résolu' %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ reclamation.statut }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                            {% if is_granted('ROLE_ADMIN') or reclamation.user.id == app.user.id %}
+                                <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                <form action="{{ path('app_reclamation_delete', {'id': reclamation.id}) }}" method="post" style="display:inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reclamation.id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réclamation ?');">Supprimer</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Aucune réclamation trouvée.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Bouton d'ajout -->
+        <div class="d-grid gap-2">
+            <a href="{{ path('app_add_reclamation') }}" class="btn btn-primary btn-lg">Ajouter une Réclamation</a>
+        </div>
+    </div>
+{% endblock %}
